@@ -1,0 +1,6 @@
+{
+  "name": "映画『君を失う、青い僕。』公式サイト",
+  "description": "現役高校生が描く、高校生の恋愛のリアル。映画『君を失う、青い僕。』公式サイト。上映会イベント「AOI FILM FEST」開催、主要キャスト＆スタッフ情報、予告編、クラウドファンディング支援受付中。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
