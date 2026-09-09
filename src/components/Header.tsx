@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Volume2, VolumeX, HeartHandshake, ExternalLink } from 'lucide-react';
-import { audioEngine } from '../utils/sound';
+import { Menu, X, HeartHandshake, ExternalLink } from 'lucide-react';
 import { MOVIE_INFO } from '../data/movieData';
 
 interface HeaderProps {
@@ -10,7 +9,6 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onOpenSupportModal }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isSoundOn, setIsSoundOn] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,16 +17,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSupportModal }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const toggleSound = () => {
-    if (isSoundOn) {
-      audioEngine.stopAtmosphere();
-      setIsSoundOn(false);
-    } else {
-      audioEngine.startAtmosphere();
-      setIsSoundOn(true);
-    }
-  };
 
   const navLinks = [
     { label: '作品概要', href: '#story', en: 'STORY' },
@@ -81,24 +69,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenSupportModal }) => {
 
         {/* Actions */}
         <div className="flex items-center space-x-2 sm:space-x-3">
-          {/* Sound Toggle */}
-          <button
-            id="sound-toggle-button"
-            onClick={toggleSound}
-            aria-label={isSoundOn ? 'サウンドをミュート' : 'サウンドを再生'}
-            className={`p-2 rounded-full border transition-all duration-200 text-xs flex items-center gap-1.5 ${
-              isSoundOn
-                ? 'bg-sky-950/60 border-sky-500 text-sky-300 shadow-[0_0_12px_rgba(56,189,248,0.3)]'
-                : 'border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700 bg-slate-900/60'
-            }`}
-            title={isSoundOn ? '音楽を停止' : '青春アンビエント音を再生'}
-          >
-            {isSoundOn ? <Volume2 className="w-4 h-4 animate-pulse" /> : <VolumeX className="w-4 h-4" />}
-            <span className="hidden md:inline text-[11px] font-gothic">
-              {isSoundOn ? 'BGM ON' : 'BGM'}
-            </span>
-          </button>
-
           {/* CAMPFIRE Support Link Button */}
           <a
             id="header-campfire-button"
